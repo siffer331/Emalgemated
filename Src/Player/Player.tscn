@@ -1,15 +1,31 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Src/Player/Controller.gd" type="Script" id=1]
 [ext_resource path="res://Src/Player/Run.gd" type="Script" id=2]
 [ext_resource path="res://Src/Systems/Statemachine/Statemachine.gd" type="Script" id=3]
 [ext_resource path="res://Src/Player/Idle.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Player/Chain.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Player/Chain.png" type="TextureArray" id=5]
+[ext_resource path="res://Src/Player/Line2D.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 15.3613 )
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform sampler2DArray tex;
+uniform int index;
+
+void fragment() {
+    COLOR = texture(tex, vec3(UV.x, UV.y, float(index)));
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/index = 5
+shader_param/tex = ExtResource( 5 )
+
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.689441, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
@@ -36,11 +52,13 @@ shape = SubResource( 1 )
 
 [node name="Cam" type="Camera2D" parent="."]
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( -17.3125, 9.3125, 24.25, -15.875 )
+[node name="Capture" type="Line2D" parent="."]
+visible = false
+material = SubResource( 3 )
+points = PoolVector2Array( 0, 0, 24.25, -15.875 )
 width = 5.0
 default_color = Color( 1, 1, 1, 1 )
-gradient = SubResource( 2 )
-texture = ExtResource( 5 )
+gradient = SubResource( 4 )
 texture_mode = 1
 joint_mode = 1
+script = ExtResource( 6 )
