@@ -1,0 +1,24 @@
+[remap]
+
+importer="texture_array"
+type="TextureArray"
+path="res://.import/Chain.png-2ae9fa4491d28dda1c76778bf05c60f8.texarr"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Assets/Player/Chain.png"
+dest_files=[ "res://.import/Chain.png-2ae9fa4491d28dda1c76778bf05c60f8.texarr" ]
+
+[params]
+
+compress/mode=0
+compress/no_bptc_if_rgb=false
+flags/repeat=1
+flags/filter=false
+flags/mipmaps=false
+flags/srgb=2
+slices/horizontal=10
+slices/vertical=1
