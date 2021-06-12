@@ -1,13 +1,13 @@
 extends StaticBody2D
 
-export var triggers := []
+export(Array, NodePath) var triggers := []
 
 var count := 0
 var open := false
 
 func _ready() -> void:
 	for trigger in triggers:
-		trigger.connect("value_changed", self, "_on_Trigger_value_changed")
+		get_node(trigger).connect("value_changed", self, "_on_Trigger_value_changed")
 
 
 func _on_Trigger_value_changed(value: bool) -> void:
