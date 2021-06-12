@@ -16,5 +16,10 @@ z_index = 10
 [node name="Ranged" parent="." instance=ExtResource( 3 )]
 position = Vector2( 99.6464, -47.9312 )
 
+<<<<<<< HEAD
 [node name="Monolith" parent="." instance=ExtResource( 4 )]
 position = Vector2( 35.7165, -50.7968 )
+=======
+[node name="Button" parent="." instance=ExtResource( 4 )]
+position = Vector2( 22.0774, -64.1902 )
+>>>>>>> 61d396a58c23fc3b991253d1d9d49e45aaa7f0b1
