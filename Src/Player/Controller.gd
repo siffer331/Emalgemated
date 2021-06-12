@@ -20,9 +20,9 @@ func movement(delta: float) -> void:
 
 func orient_player() -> void:
 	var mouse_point = owner.get_local_mouse_position()
-	dir = int((mouse_point.angle()+2*PI)/(PI/2))
+	dir = int((mouse_point.angle()+PI)/(PI/2))
 	var v := Vector2.ZERO
-	owner.sprite.frame = 0
+	owner.sprite.frame_coords.y = dir
 	owner.capture_cast.cast_to = mouse_point
 
 
@@ -58,7 +58,7 @@ func cast_capture() -> void:
 	)
 	animation_point += owner.position
 	owner.tween.start()
-	owner.animator.play("ChainWave", 2)
+	owner.chain_animator.play("ChainWave", 2)
 
 
 func _set_capture_length(value: float) -> void:
@@ -86,6 +86,6 @@ func _on_Tween_tween_completed(object: Node, key: String) -> void:
 				(animation_point-owner.position).length()/capture_speed
 			)
 			owner.capture.get_material().set_shader_param("index", 7)
-		owner.animator.stop()
+		owner.chain_animator.stop()
 
 
