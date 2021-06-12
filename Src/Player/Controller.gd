@@ -2,7 +2,7 @@ extends Node
 
 export var acceleration := 2000.0
 export var max_speed := 200.0
-export var capture_speed := 500.0
+export var capture_speed := 700.0
 
 var dir := 0
 var velocity := Vector2.ZERO
@@ -83,7 +83,7 @@ func _on_Tween_tween_completed(object: Node, key: String) -> void:
 				"capture_length",
 				1.0,
 				0.0,
-				(animation_point-owner.position).length()/capture_speed
+				(animation_point-owner.position).length()/(capture_speed*2)
 			)
 			owner.capture.get_material().set_shader_param("index", 7)
 		owner.chain_animator.stop()
