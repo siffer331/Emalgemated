@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/Player/PlayerSprites.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 15.3613 )
+extents = Vector2( 8, 4 )
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
@@ -63,6 +63,8 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 1024
+collision_mask = 3
 script = ExtResource( 6 )
 animation_frame = 1
 
@@ -81,6 +83,7 @@ script = ExtResource( 4 )
 script = ExtResource( 2 )
 
 [node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 12 )
 shape = SubResource( 1 )
 
 [node name="Cam" type="Camera2D" parent="."]
