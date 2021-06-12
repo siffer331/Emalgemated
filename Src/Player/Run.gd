@@ -6,7 +6,7 @@ func physics_process(delta: float) -> void:
 	controller.movement(delta)
 
 
-func procces(delta: float) -> void:
+func process(delta: float) -> void:
 	controller.orient_player()
 
 
