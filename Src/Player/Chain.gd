@@ -13,3 +13,6 @@ func _process(delta: float) -> void:
 			$RayCast.get_collider().glow()
 			emit_signal("broken", controlling)
 			queue_free()
+		if points[1].length() > 350:
+			emit_signal("broken", controlling)
+			queue_free()
