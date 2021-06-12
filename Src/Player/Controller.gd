@@ -3,6 +3,7 @@ extends Node
 export var acceleration := 2000.0
 export var max_speed := 200.0
 export var capture_speed := 700.0
+export var capture_max := 1
 
 var dir := 0
 var velocity := Vector2.ZERO
@@ -10,12 +11,16 @@ var velocity := Vector2.ZERO
 var capturing: Node2D
 var capture_length := 0.0 setget _set_capture_length
 var animation_point := Vector2.ZERO
+var captured := []
 
 
 func movement(delta: float) -> void:
 	var direction := get_move_direction()
 	velocity = Util.calculate_velocity(velocity, max_speed, acceleration, delta, direction)
 	velocity = owner.move_and_slide(velocity)
+	for enemy in captured:
+		var controller = enemy.get_node("Statemachine/Controller")
+		controller.move(direction, delta)
 
 
 func orient_player() -> void:
@@ -45,10 +50,10 @@ func cast_capture() -> void:
 		if hit.is_in_group("Capturable"):
 			capturing = hit
 			animation_point = hit.position-owner.position
+		else:
+			animation_point = owner.capture_cast.get_collision_point() - owner.position
 	else:
-		animation_point = owner.capture_cast.get_collision_point()
-		if animation_point == Vector2.ZERO:
-			animation_point = owner.get_local_mouse_position()
+		animation_point = owner.get_local_mouse_position()
 	(owner.tween as Tween).interpolate_property(
 		self,
 		"capture_length",
@@ -76,6 +81,12 @@ func _on_Tween_tween_completed(object: Node, key: String) -> void:
 		if capture_length == 0:
 			return
 		if capturing:
+			self.capture_length = 0
+			var chain = load("res://Src/Player/Chain.tscn").instance()
+			owner.add_child(chain)
+			chain.controlling = capturing
+			if len(captured) < capture_max:
+				captured.append(capturing)
 			capturing = null
 		else:
 			owner.tween.interpolate_property(
