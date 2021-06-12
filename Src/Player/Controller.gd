@@ -27,7 +27,7 @@ func orient_player() -> void:
 	var mouse_point = owner.get_local_mouse_position()
 	dir = int((mouse_point.angle()+PI)/(PI/2))
 	var v := Vector2.ZERO
-	owner.sprite.frame_coords.y = dir
+	owner.sprite.frame_coords.y = dir%4
 	owner.capture_cast.cast_to = mouse_point
 
 
@@ -42,9 +42,9 @@ func basic_input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
 		if capture_length == 0:
 			cast_capture()
-			for enemy in captured:
-				var controller = enemy.get_node("Statemachine/Controller")
-				controller.use(owner.get_local_mouse_position())
+		for enemy in captured:
+			var controller = enemy.get_node("Statemachine/Controller")
+			controller.use(owner.get_local_mouse_position())
 
 
 func cast_capture() -> void:

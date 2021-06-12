@@ -19,5 +19,8 @@ hframes = 2
 position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

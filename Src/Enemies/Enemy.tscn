@@ -22,3 +22,5 @@ script = ExtResource( 3 )
 texture = ExtResource( 1 )
 
 [node name="Col" type="CollisionShape2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
