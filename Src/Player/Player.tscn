@@ -80,6 +80,7 @@ controller_path = NodePath("Controller")
 
 [node name="Controller" type="Node" parent="Statemachine"]
 script = ExtResource( 1 )
+capture_max = 3
 
 [node name="Idle" type="Node" parent="Statemachine"]
 script = ExtResource( 4 )
