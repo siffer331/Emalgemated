@@ -6,9 +6,13 @@ func physics_process(delta: float) -> void:
 	controller.movement(delta)
 
 
-func procces(delta: float) -> void:
+func process(delta: float) -> void:
 	controller.orient_player()
 
 
 func unhandled_input(event: InputEvent) -> void:
 	controller.basic_input(event)
+
+
+func enter(data: Dictionary) -> void:
+	owner.player_animator.play("Idle")
