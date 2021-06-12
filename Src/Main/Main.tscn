@@ -17,4 +17,4 @@ z_index = 10
 position = Vector2( 99.6464, -47.9312 )
 
 [node name="Button" parent="." instance=ExtResource( 4 )]
-position = Vector2( 40.3631, -43.3062 )
+position = Vector2( 22.0774, -64.1902 )
