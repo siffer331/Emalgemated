@@ -42,6 +42,9 @@ func basic_input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
 		if capture_length == 0:
 			cast_capture()
+			for enemy in captured:
+				var controller = enemy.get_node("Statemachine/Controller")
+				controller.use(owner.get_local_mouse_position())
 
 
 func cast_capture() -> void:

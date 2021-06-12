@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Src/Systems/Statemachine/State.gd" type="Script" id=1]
 [ext_resource path="res://Src/Enemies/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Src/Enemies/Ranged/RangedController.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.5724
@@ -11,6 +12,9 @@ radius = 12.5724
 [node name="Statemachine" parent="." index="0"]
 initial_state = NodePath("Idle")
 controller_path = NodePath("Controller")
+
+[node name="Controller" parent="Statemachine" index="0"]
+script = ExtResource( 3 )
 
 [node name="Idle" type="Node" parent="Statemachine" index="1"]
 script = ExtResource( 1 )
