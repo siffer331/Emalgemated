@@ -9,3 +9,7 @@ default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 1 )
 texture_mode = 1
 script = ExtResource( 2 )
+
+[node name="RayCast" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 4096

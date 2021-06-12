@@ -87,7 +87,9 @@ func _on_Tween_tween_completed(object: Node, key: String) -> void:
 			self.capture_length = 0
 			var chain = load("res://Src/Player/Chain.tscn").instance()
 			owner.add_child(chain)
+			capturing.get_node("Statemachine/Controller").is_controlled = true
 			chain.controlling = capturing
+			chain.connect("broken", self, "_on_Chain_broken")
 			if len(captured) < capture_max:
 				captured.append(capturing)
 			capturing = null
@@ -103,3 +105,6 @@ func _on_Tween_tween_completed(object: Node, key: String) -> void:
 		owner.chain_animator.stop()
 
 
+func _on_Chain_broken(controlling: Node2D) -> void:
+	controlling.get_node("Statemachine/Controller").is_controlled = false
+	captured.erase(controlling)

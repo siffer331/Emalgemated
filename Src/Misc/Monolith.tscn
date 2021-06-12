@@ -6,6 +6,8 @@
 extents = Vector2( 7, 15 )
 
 [node name="Monolith" type="StaticBody2D"]
+collision_layer = 4096
+collision_mask = 0
 
 [node name="Col" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1 )
