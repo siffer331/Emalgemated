@@ -66,6 +66,11 @@ tracks/0/keys = {
 script = ExtResource( 6 )
 animation_frame = 1
 
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+vframes = 4
+hframes = 2
+
 [node name="Statemachine" type="Node" parent="."]
 script = ExtResource( 3 )
 initial_state = NodePath("Idle")
@@ -85,21 +90,15 @@ shape = SubResource( 1 )
 
 [node name="Cam" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.7, 0.7 )
 
 [node name="Capture" type="Line2D" parent="."]
 material = SubResource( 3 )
-position = Vector2( -7.84218, 9.34388 )
 points = PoolVector2Array( 0, 0, 0, 0 )
 default_color = Color( 1, 1, 1, 1 )
 gradient = SubResource( 4 )
 texture_mode = 1
 joint_mode = 1
-
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 7 )
-hframes = 2
-vframes = 4
 
 [node name="CaptureCast" type="RayCast2D" parent="."]
 enabled = true
@@ -111,5 +110,4 @@ anims/ChainWave = SubResource( 5 )
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 6 )
-
 [connection signal="tween_completed" from="Tween" to="Statemachine/Controller" method="_on_Tween_tween_completed"]
